@@ -1,4 +1,4 @@
-There are three scripts:
+#There are three scripts:
 
 * base_population_generator - to generate base population (initial population)
 * simulator - to make actual simulations with the previously generated base population (to achieve a standardized starting point of simulation)
