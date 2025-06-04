@@ -12,11 +12,11 @@
 
 
 % name of the directory with the file with input data
-    input_data_folder_string = "Simulation 1M Selective 01-Dec-2024 22-07-45";
-    % Simulation 1M Selective 01-Dec-2024 22-07-45
-    % Simulation 1M Nonselective 01-Dec-2024 22-09-57
-    % Simulation 10M Selective 01-Dec-2024 17-42-21
-    % Simulation 10M Nonselective 01-Dec-2024 22-12-02
+    input_data_folder_string = "Simulation 1M Nonselective 30-May-2025 22-02-46";
+    % Simulation 1M Selective 30-May-2025 22-16-38
+    % Simulation 1M Nonselective 30-May-2025 22-02-46
+    % Simulation 10M Selective 30-May-2025 20-01-23
+    % Simulation 10M Nonselective 30-May-2025 20-19-34
 
 % For a population of 1 million set PF=1 , for 10 million set PF=10
 PF = 1;
@@ -50,21 +50,25 @@ for iteration = 1:50
         pokaz=[];
         
         % Sigmoid parameters - antigen expression correction
-            a = 1.0; %amplitude (maximum value)
-            b = -1; % stepness ("heat" parameter)
-            c = 12; % x-axis shift (srodkowa iteracja)
+        %    a = 1.0; %amplitude (maximum value)
+        %    b = -1; % stepness ("heat" parameter)
+        %    c = 12; % x-axis shift (srodkowa iteracja)
             
-            x = iteration;
+         %   x = iteration;
             
-            sigmoid = a / (1+exp(-b*(x-c)));
+         %   sigmoid = a / (1+exp(-b*(x-c)));
             
-            LOWEST_SIGMOID = 1/30;
+         %   LOWEST_SIGMOID = 1/30;
             
-            if (sigmoid > (LOWEST_SIGMOID))
-                mult_factor = sigmoid;
-            else
-                mult_factor = LOWEST_SIGMOID;
-            end
+         %   if (sigmoid > (LOWEST_SIGMOID))
+         %       mult_factor = sigmoid;
+         %   else
+         %       mult_factor = LOWEST_SIGMOID;
+         %  end
+
+
+         % if sigmoid is inactive uncomment this line
+            mult_factor = 1.0;
         
        for c = 1:current_population_size
              if (current_population_antigen(c) <= RESISTANT_ANTIGEN_MAX_VALUE)
@@ -124,7 +128,7 @@ for iteration = 1:50
         ylabel("Count");
         hYLabel = get(gca,'YLabel');
         set(hYLabel,'rotation',90,'VerticalAlignment','bottom')
-        set(gca,'FontSize',40);
+        set(gca,'FontSize',30);
         tickXVector=[1 10 100 1000 10000 100000];
         set(gca,'XTick',tickXVector);
         tickYVector=[0 2000*PF 4000*PF 6000*PF 8000*PF 10000*PF 12000*PF 14000*PF];
